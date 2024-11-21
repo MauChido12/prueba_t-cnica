@@ -6,6 +6,7 @@ import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,12 +16,16 @@ public class EmployeeWorkedHours {
     @Id
     @Column(name="ID")
     private Integer id;
-    @Column(name="EMPLOYEE_ID")
-    private Integer employeeId;
+
     @Column(name="WORKED_HOURS")
     private Double workedHours;
+
     @Column(name="WORKED_DATE")
     private Date workedDate;
+    
+    @ManyToOne
+    @Column(name="EMPLOYEE_ID")
+    private Employee employee;
 
     
 
@@ -28,9 +33,9 @@ public class EmployeeWorkedHours {
     }
 
     
-    public EmployeeWorkedHours(Integer id, Integer employeeId, Double workedHours, Date workedDate) {
+    public EmployeeWorkedHours(Integer id, Employee employee, Double workedHours, Date workedDate) {
         this.id = id;
-        this.employeeId = employeeId;
+        this.employee = employee;
         this.workedHours = workedHours;
         this.workedDate = workedDate;
     }
@@ -42,11 +47,11 @@ public class EmployeeWorkedHours {
     public void setId(Integer id) {
         this.id = id;
     }
-    public Integer getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeId(Employee employee) {
+        this.employee = employee;
     }
     public Double getWorkedHours() {
         return workedHours;
@@ -64,7 +69,7 @@ public class EmployeeWorkedHours {
 
     @Override
     public String toString() {
-        return "EmployeeWorkedHours [id=" + id + ", employeeId=" + employeeId + ", workedHours=" + workedHours
+        return "EmployeeWorkedHours [id=" + id + ", employee=" + employee + ", workedHours=" + workedHours
                 + ", workedDate=" + workedDate + "]";
     }
     

@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,14 +19,21 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID")
     private Integer id;
+    
+    @ManyToOne
     @Column(name="GENDER_ID")
-    private Integer genderId;
+    private Gender gender;
+
+    @ManyToOne
     @Column(name="JOB_ID")
-    private Integer jobId;
+    private Job job;
+
     @Column(name="NAME")
     private String name;
+
     @Column(name="LAST_NAME")
     private String lastname;
+
     @Column(name="BIRTHDAY")
     private Date birthDate;
 
@@ -33,10 +41,10 @@ public class Employee {
    
     public Employee(){}
     
-    public Employee(Integer id, Integer genderId, Integer jobId, String name, String lastname, Date birthDate) {
+    public Employee(Integer id, Gender gender, Job job, String name, String lastname, Date birthDate) {
         this.id = id;
-        this.genderId = genderId;
-        this.jobId = jobId;
+        this.gender = gender;
+        this.job = job;
         this.name = name;
         this.lastname = lastname;
         this.birthDate = birthDate;
@@ -45,48 +53,56 @@ public class Employee {
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
-    public Integer getGenderId() {
-        return genderId;
+
+    public Gender getGender() {
+        return gender;
     }
-    public void setGenderId(Integer genderId) {
-        this.genderId = genderId;
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
-    public Integer getJobId() {
-        return jobId;
+
+    public Job getJob() {
+        return job;
     }
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
+
+    public void setJob(Job job) {
+        this.job = job;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getLastname() {
         return lastname;
     }
+
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
     public Date getBirthDate() {
         return birthDate;
     }
+
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
     @Override
     public String toString() {
-        return "Employee [id=" + id + ", genderId=" + genderId + ", jobId=" + jobId + ", name=" + name + ", lastname="
+        return "Employee [id=" + id + ", gender=" + gender + ", job=" + job + ", name=" + name + ", lastname="
                 + lastname + ", birthDate=" + birthDate + "]";
     }
 
-    
-    
-    
 
 }
