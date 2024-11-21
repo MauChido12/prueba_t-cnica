@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.employeeweb.app.entities.Employee;
+import com.employeeweb.app.models.EmployeeDTO;
 import com.employeeweb.app.services.EmployeeService;
 
 
@@ -35,8 +36,8 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<Employee> create(@RequestBody Employee employee) {
-        Employee employeeNew = service.save(employee);
+    public ResponseEntity<Employee> create(@RequestBody EmployeeDTO employeeDTO) {
+        Employee employeeNew = service.save(employeeDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeNew);
        
         

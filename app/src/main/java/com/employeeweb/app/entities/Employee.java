@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -21,11 +22,11 @@ public class Employee {
     private Integer id;
     
     @ManyToOne
-    @Column(name="GENDER_ID")
+    @JoinColumn(name="GENDER_ID")
     private Gender gender;
 
     @ManyToOne
-    @Column(name="JOB_ID")
+    @JoinColumn(name="JOB_ID")
     private Job job;
 
     @Column(name="NAME")

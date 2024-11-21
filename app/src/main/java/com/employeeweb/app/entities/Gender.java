@@ -15,7 +15,6 @@ public class Gender {
     @Column(name="NAME")
     private String name;
 
-    
 
     public Gender() {
     }
