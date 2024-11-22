@@ -2,10 +2,10 @@ package com.employeeweb.app.mapper;
 
 import java.util.Date;
 
+import com.employeeweb.app.dto.EmployeeDTO;
 import com.employeeweb.app.entities.Employee;
 import com.employeeweb.app.entities.Gender;
 import com.employeeweb.app.entities.Job;
-import com.employeeweb.app.models.EmployeeDTO;
 import com.employeeweb.app.utils.Utils;
 
 public class Mapper {

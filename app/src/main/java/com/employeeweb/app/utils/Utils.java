@@ -7,7 +7,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
-import com.employeeweb.app.models.EmployeeDTO;
+import com.employeeweb.app.dto.EmployeeDTO;
 
 
 public class Utils {

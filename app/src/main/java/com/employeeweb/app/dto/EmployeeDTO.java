@@ -1,30 +1,22 @@
-package com.employeeweb.app.models;
+package com.employeeweb.app.dto;
 
-
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class EmployeeDTO {
     
-    private Integer id;
-
+    @NotNull
     private Integer genderId;
-
+    @NotNull
     private Integer jobId;
-
+    @NotEmpty
     private String name;
-
+    @NotEmpty
     private String lastname;
-
+    @NotEmpty
     private String birthDate;
 
     public EmployeeDTO(){}
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getGenderId() {
         return genderId;
