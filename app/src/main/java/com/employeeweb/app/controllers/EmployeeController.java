@@ -45,13 +45,13 @@ public class EmployeeController {
     *         - HTTP 400 (Bad Request) if validation errors occur.
     *         - HTTP 500 (Internal Server Error) if an unexpected error occurs.
     */
-@PostMapping
-@ApiOperation(value = "Create a new employee", notes = "Creates a new employee using the provided data.")
-@ApiResponses({
-    @ApiResponse(code = 201, message = "Employee created successfully"),
-    @ApiResponse(code = 400, message = "Validation error in the request body"),
-    @ApiResponse(code = 500, message = "Unexpected server error")
-})
+    @PostMapping
+    @ApiOperation(value = "Create a new employee", notes = "Creates a new employee using the provided data.")
+    @ApiResponses({
+        @ApiResponse(code = 201, message = "Employee created successfully"),
+        @ApiResponse(code = 400, message = "Validation error in the request body"),
+        @ApiResponse(code = 500, message = "Unexpected server error")
+    })
     public ResponseEntity<Map<String, Object>> create(@Valid @RequestBody EmployeeDTO employeeDTO, BindingResult result) {
         Map<String, Object> response = new HashMap<>();
         if (result.hasFieldErrors()) {
@@ -83,25 +83,24 @@ public class EmployeeController {
     }
 
     /**
- * Retrieves employees based on job ID and gender ID.
- *
- * @param request the filter criteria (job ID and gender ID), validated.
- * @param result  the binding result for validation errors.
- * @return a ResponseEntity containing:
- *         - HTTP 200 (OK) and a list of employees if found.
- *         - HTTP 400 (Bad Request) if validation errors occur.
- *         - HTTP 404 (Not Found) if no employees match the filters.
- *         - HTTP 500 (Internal Server Error) if an unexpected error occurs.
- */
-@PostMapping("/byJob")
-@ApiOperation(value = "Get employees by job and gender", notes = "Retrieves employees filtered by job ID and gender ID.")
-@ApiResponses({
-    @ApiResponse(code = 200, message = "Employees retrieved successfully"),
-    @ApiResponse(code = 400, message = "Validation error in the request body"),
-    @ApiResponse(code = 404, message = "No employees found for the given criteria"),
-    @ApiResponse(code = 500, message = "Unexpected server error")
-})
-
+    * Retrieves employees based on job ID and gender ID.
+    *
+    * @param request the filter criteria (job ID and gender ID), validated.
+    * @param result  the binding result for validation errors.
+    * @return a ResponseEntity containing:
+    *         - HTTP 200 (OK) and a list of employees if found.
+    *         - HTTP 400 (Bad Request) if validation errors occur.
+    *         - HTTP 404 (Not Found) if no employees match the filters.
+    *         - HTTP 500 (Internal Server Error) if an unexpected error occurs.
+    */
+    @PostMapping("/byJob")
+    @ApiOperation(value = "Get employees by job and gender", notes = "Retrieves employees filtered by job ID and gender ID.")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "Employees retrieved successfully"),
+        @ApiResponse(code = 400, message = "Validation error in the request body"),
+        @ApiResponse(code = 404, message = "No employees found for the given criteria"),
+        @ApiResponse(code = 500, message = "Unexpected server error")
+    })
     public ResponseEntity<Map<String, Object>> getEmployeesByJob(@Valid @RequestBody EmployeeFilterDTO request,BindingResult result){
         
         Map<String,Object> response = new HashMap<>();
@@ -156,10 +155,10 @@ public class EmployeeController {
     @PostMapping("/queryEmployees")
     @ApiOperation(value = "Query employees by ID and date range", notes = "Retrieves employees filtered by ID and a date range.")
     @ApiResponses({
-    @ApiResponse(code = 200, message = "Employees retrieved successfully"),
-    @ApiResponse(code = 400, message = "Validation error in the request body or invalid date range"),
-    @ApiResponse(code = 404, message = "No employees found for the given criteria"),
-    @ApiResponse(code = 500, message = "Unexpected server error")
+        @ApiResponse(code = 200, message = "Employees retrieved successfully"),
+        @ApiResponse(code = 400, message = "Validation error in the request body or invalid date range"),
+        @ApiResponse(code = 404, message = "No employees found for the given criteria"),
+        @ApiResponse(code = 500, message = "Unexpected server error")
     })
     public ResponseEntity<Map<String, Object>> queryEmployees(@Valid @RequestBody EmployeeRequestDTO employeeRequestDTO, BindingResult result) {
         Map<String, Object> response = new HashMap<>();
