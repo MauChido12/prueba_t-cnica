@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.employeeweb.app.entities.Employee;
 import com.employeeweb.app.mapper.Mapper;
 import com.employeeweb.app.models.EmployeeDTO;
+import com.employeeweb.app.models.JobDTO;
 import com.employeeweb.app.repositories.EmployeeRepository;
 import com.employeeweb.app.repositories.JobRepository;
 import com.employeeweb.app.utils.Utils;
@@ -31,11 +32,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     
     @Override
-    @Transactional(readOnly = true)
-    public Optional<Employee> findByJobId(Long id) {
-        return repository.findById(id);
+    public List<Employee> getJobById(Integer jobid) {
+        return repository.findByJobId(jobid);
     }
-
     
     @Override
     @Transactional
@@ -53,6 +52,8 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
         return null;
     }
+
+    
 
     private boolean isExistFullName(EmployeeDTO employeeDTO){
         boolean indicator = true;
@@ -85,7 +86,5 @@ public class EmployeeServiceImpl implements EmployeeService{
         return indicator;
 
     }
-
    
-
 }
