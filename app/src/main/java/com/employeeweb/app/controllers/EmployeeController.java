@@ -1,5 +1,6 @@
 package com.employeeweb.app.controllers;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.employeeweb.app.entities.Employee;
 import com.employeeweb.app.models.EmployeeDTO;
+import com.employeeweb.app.models.EmployeeRequestDTO;
 import com.employeeweb.app.services.EmployeeService;
 
 
@@ -61,6 +63,21 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeOptional);
 
     }
+
+    @PostMapping("/queryEmployees")
+    public ResponseEntity<List<Employee>> queryEmployees(@RequestBody EmployeeRequestDTO employeeRequestDTO) {
+        List<Employee> employees = service.queryEmployees(employeeRequestDTO.getEmployeeId(), employeeRequestDTO.getStartDate(), employeeRequestDTO.getEndDate());
+        if (employees.size() > 0) {
+            
+            return ResponseEntity.ok(employees);
+            
+        }
+        
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList());
+        
+        
+    }
+    
 
    
     

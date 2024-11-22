@@ -9,9 +9,13 @@ import com.employeeweb.app.models.EmployeeDTO;
 
 public interface EmployeeService {
 
+    Employee save(EmployeeDTO employeeDto);
+
     Map<String,List<Employee>> getJobById(Integer jobId);
 
-    Employee save(EmployeeDTO employeeDto);
+    List<Employee> queryEmployees(List<Integer> employeesId,String startDate,String finalDate);
+
+    
 
     
 } 
