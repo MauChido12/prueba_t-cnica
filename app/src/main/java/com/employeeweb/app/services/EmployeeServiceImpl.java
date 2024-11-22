@@ -1,12 +1,11 @@
 package com.employeeweb.app.services;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
+import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
+
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.employeeweb.app.entities.Employee;
 import com.employeeweb.app.mapper.Mapper;
 import com.employeeweb.app.models.EmployeeDTO;
-import com.employeeweb.app.models.JobDTO;
 import com.employeeweb.app.repositories.EmployeeRepository;
 import com.employeeweb.app.repositories.JobRepository;
 import com.employeeweb.app.utils.Utils;
@@ -32,8 +30,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     
     @Override
-    public List<Employee> getJobById(Integer jobid) {
-        return repository.findByJobId(jobid);
+    public Map<String,List<Employee>> getJobById(Integer jobid) {
+        List<Employee> employees = repository.findByJobId(jobid);
+
+        return employees.stream().
+                filter(employee -> 1 == employee.getGender().getId()).
+                sorted(Comparator.comparing(Employee::getLastname)).
+                collect(Collectors.groupingBy(Employee::getLastname));
     }
     
     @Override
